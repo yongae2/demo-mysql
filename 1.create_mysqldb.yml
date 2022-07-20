@@ -1,0 +1,28 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mysql-po
+  namespace: demo-mysql
+  labels:
+    run: mysql-po
+spec:
+  containers:
+  - image: ousema2003/myrepo:mysql
+    name: mysql
+    ports:
+    - protocol: TCP
+      containerPort: 3306
+    env:
+    - name: MYSQL_USER
+      value: user1
+    - name: MYSQL_PASSWORD
+      value: mypa55
+    - name: MYSQL_DATABASE
+      value: items
+    - name: MYSQL_ROOT_PASSWORD
+      value: r00tpa55
+  - image: ousema2003/myrepo:telnet
+    name: telnet
+    command: ['/bin/sh', '-c', 'sleep 1d']
+...
