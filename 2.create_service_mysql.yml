@@ -1,0 +1,30 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-mysql-np
+  namespace: demo-mysql
+spec:
+  type: NodePort
+  ports:
+  - nodePort: 31234
+    port: 3306
+    targetPort: 3306
+    protocol: TCP
+  selector:
+    run: mysql-po
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-mysql-cip
+  namespace: demo-mysql
+spec:
+  type: NodePort
+  ports:
+  - port: 3306
+    targetPort: 3306
+    protocol: TCP
+  selector:
+    run: mysql-po
+...
