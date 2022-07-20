@@ -1,0 +1,30 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fe-tomcat9-np
+  namespace: demo-mysql
+spec:
+  selector:
+    run: tomcat9
+  ports:
+  - protocol: "TCP"
+    port: 9080
+    targetPort: 8080
+    nodePort: 31345
+  type: NodePort
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fe-tomcat9-clusterip
+  namespace: demo-mysql
+spec:
+  selector:
+    run: tomcat9
+  ports:
+  - protocol: "TCP"
+    port: 9080
+    targetPort: 8080
+  type: ClusterIP
+...
