@@ -1,0 +1,31 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tomcat-mysql
+  namespace: demo-mysql
+spec:
+  selector:
+    matchLabels:
+      run: tomcat9
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        run: tomcat9
+    spec:
+      volumes:
+      - name: pv-tomcat-storage
+        persistentVolumeClaim:
+          claimName: pvc-tomcat9
+
+      containers:
+        - name: tomcat8
+          image: "ousema2003/myrepo:tomcat9"
+          ports:
+          - containerPort: 8080
+
+          volumeMounts:
+          - mountPath: "/opt/config"
+            name: pv-tomcat-storage
+...
