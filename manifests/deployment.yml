@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: "cnicluster-724e"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: "cnicluster-724e"
+  template:
+    metadata:
+      labels:
+        app: "cnicluster-724e"
+    spec:
+      containers:
+        - name: "cnicluster-724e"
+          image: "newcnireg.azurecr.io/cnicluster"
+          ports:
+          - containerPort: 80
